@@ -1,6 +1,8 @@
 const form = document.getElementById("novoItem")
 const lista = document.getElementById("lista")
 
+
+/* addEventListener:: Os dados escritos são enviados após a ação de clicar no botão  */
 form.addEventListener("submit", (evento) => {
     evento.preventDefault()
 
