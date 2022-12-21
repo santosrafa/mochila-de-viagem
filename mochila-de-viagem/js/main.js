@@ -1,5 +1,6 @@
 const form = document.getElementById("novoItem")
 const lista = document.getElementById("lista")
+const itens = []
 
 
 /* addEventListener:: Os dados escritos são enviados após a ação de clicar no botão  */
@@ -27,7 +28,15 @@ function criaElemento(nome, quantidade){
 
     lista.appendChild(novoItem)
 
+    const itemAtual = {
+        "nome": nome,
+        "quantidade": quantidade
+    }
+
+    itens.push(itemAtual)
+    
+
     /* Aqui ele grava as informacoes no proprio navegador */
-    localStorage.setItem("nome", nome)
-    localStorage.setItem("quantidade", quantidade)
+    /* localStorage: so armazena dados do tipo string */
+    localStorage.setItem("item", JSON.stringify(itens))
 }
