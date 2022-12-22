@@ -1,6 +1,13 @@
 const form = document.getElementById("novoItem")
 const lista = document.getElementById("lista")
-const itens = []
+
+/* Verifica se tem itens no localStorage senão cria um array vazio */
+/* JSON.parse: Transformando os dados recebidos em JSON.stringify para o javascript */
+const itens = JSON.parse(localStorage.getItem("itens")) || []
+
+itens.forEach(elemento => {
+  console.log (elemento.nome, elemento.quantidade)  
+})
 
 
 /* addEventListener:: Os dados escritos são enviados após a ação de clicar no botão  */
@@ -38,5 +45,5 @@ function criaElemento(nome, quantidade){
 
     /* Aqui ele grava as informacoes no proprio navegador */
     /* localStorage: so armazena dados do tipo string */
-    localStorage.setItem("item", JSON.stringify(itens))
+    localStorage.setItem("itens", JSON.stringify(itens))
 }
