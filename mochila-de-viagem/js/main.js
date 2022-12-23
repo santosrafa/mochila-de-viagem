@@ -16,14 +16,23 @@ form.addEventListener("submit", (evento) => {
     const nome = evento.target.elements['nome']
     const quantidade = evento.target.elements['quantidade']
 
+    /* Perguntamos se o elemento ja existe */
+    const existe = itens.find(elemento => elemento.nome === nome.value)
+
     const itemAtual = {
         "nome": nome.value,
         "quantidade": quantidade.value
     }
 
-    criaElemento(itemAtual)
-
-    itens.push(itemAtual)
+    /* Se o nome e encontrado atualiza o elemento, senao cria o elemento do zero */
+    if (existe){
+        itemAtual.id = existe.id
+        atualizaElemento(itemAtual)
+    }else{
+        itemAtual.id = itens.length
+        criaElemento(itemAtual)
+        itens.push(itemAtual)
+    }
 
     /* Aqui ele grava as informacoes no proprio navegador */
     /* localStorage: so armazena dados do tipo string */
@@ -40,10 +49,16 @@ function criaElemento(item){
 
     const numeroItem = document.createElement('strong')
     numeroItem.innerHTML = item.quantidade
+    numeroItem.dataset.id = item.id
+
 
     novoItem.appendChild(numeroItem)
     novoItem.innerHTML += item.nome
 
     lista.appendChild(novoItem)
 
+}
+
+function atualizaElemento(item){
+    document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade
 }
