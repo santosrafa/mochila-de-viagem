@@ -28,6 +28,10 @@ form.addEventListener("submit", (evento) => {
     if (existe){
         itemAtual.id = existe.id
         atualizaElemento(itemAtual)
+        
+        /* Se meu elemento ja existe eu so troco o conteudo */
+        itens[existe.id] = itemAtual
+        
     }else{
         itemAtual.id = itens.length
         criaElemento(itemAtual)
